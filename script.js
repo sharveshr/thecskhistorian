@@ -17,7 +17,7 @@ window.addEventListener('scroll', () => {
 // ===================================
 menuToggle?.addEventListener('click', () => {
     const navLinks = document.querySelector('.nav-links');
-    navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+    navLinks.classList.toggle('active');
 });
 
 // ===================================
@@ -28,13 +28,13 @@ const newsletterForm = document.getElementById('newsletterForm');
 newsletterForm?.addEventListener('submit', (e) => {
     e.preventDefault();
     const email = e.target.querySelector('input').value;
-    
+
     // Show success message
     const button = e.target.querySelector('button');
     const originalText = button.textContent;
     button.textContent = 'Subscribed! ✓';
     button.style.background = 'linear-gradient(135deg, #10B981 0%, #059669 100%)';
-    
+
     // Reset after 3 seconds
     setTimeout(() => {
         button.textContent = originalText;
@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
         el.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
         fadeInObserver.observe(el);
     });
-    
+
     // Active navigation link
     const currentPage = window.location.pathname.split('/').pop() || 'index.html';
     document.querySelectorAll('.nav-link').forEach(link => {
@@ -101,16 +101,16 @@ cards.forEach(card => {
         const rect = card.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
-        
+
         const centerX = rect.width / 2;
         const centerY = rect.height / 2;
-        
+
         const rotateX = (y - centerY) / 20;
         const rotateY = (centerX - x) / 20;
-        
+
         card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-5px)`;
     });
-    
+
     card.addEventListener('mouseleave', () => {
         card.style.transform = '';
     });
